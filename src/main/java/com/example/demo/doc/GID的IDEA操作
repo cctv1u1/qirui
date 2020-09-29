@@ -1,0 +1,17 @@
+1:IDEA使用git提交到github时提示Push rejected: Push to xxx/master was rejected
+
+进入项目路径 右键-Git Bash Here 打开git控制台
+git pull xxx master –allow-unrelated-histories
+git push -u origin master -f
+根据提示输入github用户名和密码登录github,这里xxx为自己仓库名
+
+
+2：如何配置GIT
+先进入IDEA的setting,然后选择GIT，然后选择GID安装目录的BIN文件夹，选择GIT.exe，
+然后选择setting里面的GITHUB选项，然后特别注意这个里面的地址要修改一下，不能是
+server:github.com
+否则会提示无法链接必须是https://github.com才可以，必须加入https前缀，否则无效。
+
+3：IDEA的GIT使用
+右键你的项目，选择GIT选择commont directory，不要选择add，然后选择PUSH，不选择
+commont directory,在PUSH里面不会有内容
