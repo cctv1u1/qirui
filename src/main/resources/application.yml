@@ -1,0 +1,64 @@
+spring:
+  profiles:
+    active: prod1
+#这个active指定指向那个配置文件模块是---分隔
+---
+server:
+  port: 8080
+spring:
+  resources:
+    static-locations: classpath:static/,file:static/
+  datasource:
+    name: tic09
+
+    jdbc-url: jdbc:oracle:thin:@192.168.0.21:1521/orcl
+    username: tic09
+    password: tic09
+    driver-class-name: oracle.jdbc.OracleDriver
+
+  datasource2:
+      name: ground
+
+      jdbc-url: jdbc:oracle:thin:@192.168.0.32:1521/orcl
+      username: ground
+      password: ground
+      driver-class-name: oracle.jdbc.OracleDriver
+profiles: prod1
+
+http:
+    encoding:
+    force: true
+    charset: utf-8
+    enabled: true
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.demo.entity
+
+logging:
+  path: d:\springboot #指定日志生成路径，某人文件名spring.log
+  pattern: #输出的文件格式
+    console: '%d{yyyy-MMM-dd HH:mm:ss.SSS} %-5level [%thread] %logger{15} - %msg%n'
+
+---
+  server:
+    port: 8081
+  spring:
+    datasource:
+      name: mydb
+      url: jdbc:mysql://127.0.0.1:3306/mydb?serverTimezone=UTC
+      username: root
+      password: 123456
+      driver-class-name: com.mysql.jdbc.Driver
+    profiles: prod2
+  http:
+    encoding:
+    force: true
+    charset: utf-8
+    enabled: true
+
+  mybatis:
+    mapper-locations: classpath:mapper/*.xml
+    type-aliases-package: com.example.demo.entity
+
+

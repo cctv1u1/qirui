@@ -1,0 +1,61 @@
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script src="js/vue.min.js"></script>
+    <!--    <script src=" https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>-->
+    <style>
+        .class2{
+            background: red;
+            color: #eee;
+        }
+    </style>
+
+
+</head>
+<body>
+<div id="app">
+    <p>{{ message }}</p>
+    <div v-html="htmlstr"></div>
+    <br>
+    <div v-bind:class="use"> v-bind:class 指令</div>
+    <br/>
+    表达式：
+    <br/>
+    {{5+5}}
+    <br/>
+    {{ok?'1':'2'}}
+    <br/>
+    动态ID生成:ID998
+    <div v-bind:id="'list'+id"></div>
+<br>
+    点击事件
+    <a v-on:click="dosomething">点击我</a>
+    <br>
+    双向绑定
+    <input type="text" v-model="txt1">
+    {{txt1}}
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{message:'hello vue',
+            htmlstr: '<h1>菜鸟教程</h1>',
+            use:'class2',
+            ok:false,
+            id:998,
+            txt1:'文本'
+        },
+        methods:{
+            dosomething:function(){
+                this.txt1='789456';
+                alert('987');
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

@@ -1,0 +1,74 @@
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script src="https://cdn.staticfile.org/vue/2.2.2/vue.min.js"></script>
+
+
+</head>
+<body>
+
+<div id="app">
+  {{message}}
+
+<div>
+    <h1>input输入框</h1>
+    <input type="text" v-model="pt1">
+    {{pt1}}
+</div>
+    <div>
+        <h1>checkbox多选框</h1>
+        <input type="checkbox" v-model="ck1" value="pingguo">苹果
+        <input type="checkbox" v-model="ck1" value="juzi">橘子
+        <input type="checkbox" v-model="ck1" value="yali">鸭梨
+        {{ck1}}
+    </div>
+
+    <div>
+        <h1>radio单选按钮</h1>
+        <input type="radio" v-model="rd1" value="boy">男
+        <input type="radio" v-model="rd1" value="girl">女
+        {{rd1}}
+
+    </div>
+
+    <div>
+        <h1>select单选按钮</h1>
+        <select v-model="sl1" >
+            <option value="">选择一个网站</option>
+            <option value="pingguo">苹果</option>
+            <option value="yali">鸭梨</option>
+        </select>
+
+
+            {{sl1}}
+
+        <select v-model="selected" >
+            <option value="">选择一个网站</option>
+            <option value="www.runoob.com">Runoob</option>
+            <option value="www.google.com">Google</option>
+        </select>
+
+
+        {{selected}}
+
+
+    </div>
+</div>
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'hello vue',
+            pt1:'',
+            ck1:[],
+            rd1:'',
+            sl1:'',
+            selected: ''
+        }
+    })
+</script>
+
+</body>
+</html>

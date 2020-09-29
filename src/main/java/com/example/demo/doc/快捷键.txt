@@ -1,0 +1,11 @@
+1：格式化代码ctrl+alt+L
+2: 智能提示补全alt+/； 补全参数ctrl+alt+/
+3: 整体代码前移，后移 shift+tab
+4：大小写转换ctrl+shift+y
+5: 生成get和set的方法，ALT+INERT然后选择getter and setter
+6: 可以右键上面的小tabs，然后选择add favorites添加到收藏夹
+7：ctrl+E查找最近修改过的代码文件
+8: 快速定位红线錯誤F2
+9: 选择最近复制的多条内容粘贴，ctrl+shift+v
+10:查看当前方法被谁调用 ctrl+alt+h
+11:快速定位错误行,F2

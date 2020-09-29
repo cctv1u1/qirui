@@ -1,0 +1,85 @@
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script src="js/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+
+    <style>
+        .class2{
+            background: red;
+            color: #eee;
+        }
+    </style>
+
+
+</head>
+<body>
+<div id="app">
+    {{message}}
+   姓名：<input type="text" name="name">
+    性别：<input type="radio" name="sex">男 <input type="radio" name="sex">女
+    班级：<select>
+    <option value="1">一班</option>
+    <option value="2">二班</option>
+    <option value="3">三班</option>
+</select>
+    <input type="button" value="查询" v-on:click="dofind()"/>
+
+    <table>
+        <tr>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>班级</td>
+        </tr>
+
+        <tr v-for="v in testdata"><!--写成 v of list 效果是一样的-->
+            <td>{{v.username}}</td>
+            <td>{{v.sex}}</td>
+            <td>{{v.class}}</td>
+            <td><a target="_blank" v-bind:href="'v3.html?id='+v.username">编辑</a></td>
+            <td><a target="_blank" v-bind:href="'v3.html?id='+v.username">删除</a></td>
+        </tr>
+    </table>
+
+
+
+
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            message:'VUE正常',
+            ajaxjson:'post开始请求',
+            use:'class2',
+
+            testdata:[{"username":"张三1","sex":"男","class":"一班"},{"username":"李四","sex":"女","class":"二班"},{"username":"王五","sex":"男","class":"三班"}]
+        },
+        methods:{
+            dosomething:function(){
+                alert('987');
+            },
+            dofind:function(){
+                var postparam=this.testdata;
+                // data: {
+                //     name: '111@qq.com',
+                //         pwd: 'testpwd'
+                // }
+                axios({
+                    method: 'POST',
+                    url: '/user/testjson',
+                    data: {
+                        posdata:postparam
+                    }
+
+                }).then(response=>(this.ajaxjson = response.data));
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

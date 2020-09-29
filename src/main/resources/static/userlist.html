@@ -1,0 +1,141 @@
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Title</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script src="js/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+
+
+</head>
+<body>
+<h1>查询页</h1>
+<div id="app">
+   姓名：<input type="text" name="username" v-model="username">
+    <br>
+    性别：
+    <input type="radio" name="sex" value=""  v-model="sex">全体
+    <input type="radio" name="sex" value="1"  v-model="sex">男
+    <input type="radio" name="sex" value="0"   v-model="sex">女
+    <br>
+    班级：<select name="banji" v-model="banji">
+    <option value="-1">请选择</option>
+    <option value="1">一班</option>
+    <option value="2">二班</option>
+    <option value="3">三班</option>
+</select>
+    <br>
+    <input type="button" value="查询" @click="getList()"/>
+    <a  target="_blank" href="useradd.html">添加</a>
+    <br>
+
+    <table>
+        <tr>
+            <td>ID索引</td>
+            <td>姓名</td>
+            <td>性别</td>
+            <td>班级</td>
+            <td>操作</td>
+            <td>操作2</td>
+        </tr>
+        <tr v-for="(item,index) in userlist">
+            <td>{{index}}</td>
+            <td>{{item.username}}</td>
+            <td v-if="item.sex==1">男</td>
+            <td v-if="item.sex==0">女</td>
+            <td>{{item.banji}}</td>
+            <td ><input type="button" @click="deleteitem(item.id)" value="删除"></input>
+            </td>
+            <td>
+                <a :href="'useredit.html?id=' + item.id ">编辑</a>
+            </td>
+        </tr>
+    </table>
+    <br/>
+    <el-pagination
+            background
+            @size-change="handleSizeChange"
+            @current-change="handleCurrentChange"
+            :current-page="currentPage"
+            :page-sizes="[10, 20, 30, 100]"
+            :page-size="pageSize"
+            layout="total, sizes, prev, pager, next, jumper"
+            :total="total">
+    </el-pagination>
+
+
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            username:'',
+            sex:'',
+            banji:'-1',
+            userlist:'',
+            currentPage:1,// 当前页码
+            pageSize:10,// 每页大小
+            total:1
+        },
+        mounted() {
+            // 页面一加载完成就执行getList方法
+           // this.getList();
+        },
+        methods:{
+            //? 长度改变----改变每页显示的条数的时候  自动触发
+            handleSizeChange(val){
+                this.pageSize=val;
+                this.getList();
+            },
+            // 当前改变----当前页码改变之后，触发这个函数
+            handleCurrentChange(val){
+                this.currentPage=val;
+                this.getList();
+            },
+            getList:function(){
+                axios({
+                    method: 'POST',
+                    url: '/user/getlist',
+                    data: {
+                        username:this.username,
+                        sex:this.sex,
+                        banji:this.banji,
+                        pageindex:this.currentPage,
+                        pagesize:this.pageSize
+                    }
+                }).then(response=> {
+                    this.userlist = response.data.datalist
+                    this.total = response.data.datacount
+                }).catch(err=>{
+                    console.error('获取数据失败' + err);
+                });
+            },
+            deleteitem:function(id){
+                axios({
+                    method: 'POST',
+                    url: '/user/deleteuser',
+                    data: {
+                        id:id
+                    }
+                }).then(response=>{
+                    if(response.data.resultcode==0){
+                        alert('删除成功');
+                        this.getList();
+                    }
+                }).catch(err=>{
+                    console.error('删除数据失败' + err);
+            })
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

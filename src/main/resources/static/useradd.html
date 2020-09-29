@@ -1,0 +1,77 @@
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script src="js/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+
+
+</head>
+<body>
+<div id="app">
+   姓名：<input type="text" name="username" v-model="username">
+    <br>
+    性别：<input type="radio" name="sex" value="1"  v-model="sex">男
+    <input type="radio" name="sex" value="0"   v-model="sex">女
+    <br>
+    班级：<select name="banji" v-model="banji">
+    <option value="-1">请选择</option>
+    <option value="1">一班</option>
+    <option value="2">二班</option>
+    <option value="3">三班</option>
+</select>
+    <br>
+    <input type="button" value="添加" v-on:click="dosave()"/>
+    <br>
+
+</div>
+
+<script>
+    new Vue({
+        el:'#app',
+        data:{
+            username:'',
+            sex:'',
+            banji:'-1',
+            ajaxjson:''
+        },
+        methods:{
+            dosave:function(){
+                if(this.username=="")
+                {
+                    alert("用户名不能为空");
+                    return;
+                }
+                if(this.sex=="")
+                {
+                    alert("请选择性别");
+                    return;
+                }
+                if(this.banji=="-1")
+                {
+                    alert("请选择班级");
+                    return;
+                }
+            //    var postparam=this.data;
+                axios({
+                    method: 'POST',
+                    url: '/user/dosave',
+                    data: {
+                        username:this.username,
+                        sex:this.sex,
+                        banji:this.banji
+
+                    }
+                }).then(response=> {
+                    this.ajaxjson = response.data;
+                    alert('添加成功')
+                ;
+            });
+            }
+        }
+    })
+
+</script>
+</body>
+</html>

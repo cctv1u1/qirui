@@ -1,0 +1,4 @@
+--引入方法
+https://blog.csdn.net/gaoqiang1112/article/details/79482069
+
+--在这个之前要先设置MAVEN的MAVEN_HOME,否则无法操作MAVEN命令

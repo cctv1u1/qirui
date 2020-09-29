@@ -1,0 +1,25 @@
+1:设置用户名
+        git config --global user.name 'cctv1u1'
+2:设置用户名邮箱
+        git config --global user.email '87050418@qq.com'
+3：查看当前配置设置
+         git config -list
+3:初始化GIT(先初始化git)
+        git init
+4：查看当前状态
+        git status
+5: 工作区添加到缓存区
+        git add 文件名
+6：从缓存区提交到仓库
+        git commit -m 'A1059.txt'
+7:提交到GITHUB
+        git push
+8：从GITHUB下载项目
+        git clone https://github.com/cctv1u1/TESTONE.git
+9：获取服务器版本(下载当前服务器版本)
+        git pull
+10:把本地的已经解决的问题提交到服务器（必须本地已经解决并且commit）
+        git push
+11:查看日志
+        git log(按Q退出)
+

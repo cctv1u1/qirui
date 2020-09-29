@@ -1,0 +1,41 @@
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Title</title>
+    <meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+    <script src="js/vue.min.js"></script>
+    <script src="https://cdn.staticfile.org/axios/0.18.0/axios.min.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+
+</head>
+<body>
+<router-view></router-view>
+<div class="list-group">
+    <a class="list-group-item" v-link="{ path: '/home'}">Home</a>
+    <a class="list-group-item" v-link="{ path: '/about'}">About</a>
+</div>
+
+<script>
+    var Home = Vue.extend({
+        template: '<div><h1>Home</h1><p>{{msg}}</p></div>',
+        data: function() {
+            return {
+                msg: 'Hello, vue router!'
+            }
+        }
+    });
+    var About = Vue.extend({
+        template: '<div><h1>About</h1><p>This is the tutorial about vue-router.</p></div>'
+    });
+    var router = new VueRouter();
+    router.map({
+        '/home': { component: Home },
+        '/about': { component: About }
+    });
+    var App = Vue.extend({});
+    router.start(App, '#app');
+
+</script>
+</body>
+</html>

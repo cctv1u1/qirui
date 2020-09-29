@@ -1,0 +1,38 @@
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>ViewUI example</title>
+    <link rel="stylesheet" type="text/css" href="http://unpkg.com/view-design/dist/styles/iview.css">
+    <script type="text/javascript" src="http://vuejs.org/js/vue.min.js"></script>
+    <script type="text/javascript" src="http://unpkg.com/view-design/dist/iview.min.js"></script>
+
+</head>
+<body>
+<div id="app">
+
+    <mycom1></mycom1>
+
+    <mycom3></mycom3>
+</div>
+
+<template id="tmpl">
+    <h1>这是根据ID创建的模板</h1>
+
+</template>
+
+</body>
+<script>
+    Vue.component('mycom1',Vue.extend({
+        template:'<h1>这是一个模板2</h1>'
+    }))
+
+    Vue.component('mycom3',{
+        template:"#tmpl"
+    })
+
+    new Vue({
+        el: '#app'
+    })
+</script>
+
+</html>

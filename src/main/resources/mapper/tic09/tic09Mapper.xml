@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.demo.mapper.tic09.tic09Mapper">
+
+    <select id="slt0100place" parameterType="java.util.Map" resultType="com.example.demo.entity.t0100placeinfo">
+        select placeno,placename from t0100_placeinfo
+    </select>
+
+    <select id="queryCoupon" parameterType="java.util.Map" resultType="com.example.demo.entity.CouponInfo">
+        select b.memo couponno,b.couponname  from t0701_cinemanet  a,t0398_appcodepaymode b where a.netid=b.appcode
+and a.cinemaid
+in (select placeno from t0100_placeinfo where placeno=#{placeno}  or sysscode=#{placeno})
+and b.memo is not null and b.couponname is not null
+    </select>
+
+
+    <update id="savehandshake" parameterType="java.util.Map">
+	update t0100_placeinfo set ipaddress=#{ip},lastvdatetime=sysdate
+	,webPort='8436' where sysscode=#{placeno}
+    </update>
+
+
+
+</mapper>

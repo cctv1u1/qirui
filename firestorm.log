@@ -1,0 +1,4 @@
+INFO http-nio-8080-exec-2 com.example.demo.WeiXin.WxHelper - {"errcode":40029,"errmsg":"invalid code, hints: [ req_id: CHIDZ44ce-jwR4dA ]"}
+INFO http-nio-8080-exec-6 com.example.demo.WeiXin.WxHelper - {"errcode":40029,"errmsg":"invalid code, hints: [ req_id: CHIDAJqge-jEtsva ]"}
+INFO http-nio-8080-exec-2 com.example.demo.WeiXin.WxHelper - https://api.weixin.qq.com/sns/jscode2session?appid=wxa0b74775d2d4e574&secret=a4b88210ed2f7ee389cb85996c87391f&js_code=001cqh1w3vTjOU24M20w3nDOCx4cqh1h&grant_type=authorization_code
+INFO http-nio-8080-exec-2 com.example.demo.WeiXin.WxHelper - {"errcode":40029,"errmsg":"invalid code, hints: [ req_id: dHID6fMre-cwN_Ga ]"}
