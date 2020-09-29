@@ -62,7 +62,7 @@ public class Excelcontroller {
                             HttpServletRequest request, HttpServletResponse response) {
         String returnjson = "";
         try {
-            // 保存EXCEL15
+            // 保存EXCEL17
             //获取跟目录
             File path = new File(ResourceUtils.getURL("classpath:").getPath());
             if(!path.exists()) path = new File("");
